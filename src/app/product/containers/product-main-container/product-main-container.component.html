@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-2">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/product/list" routerLinkActive="active">Lista</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/product/new" routerLinkActive="active">Nuevo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/product/bestSellers" routerLinkActive="active">Mas vendidos</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>

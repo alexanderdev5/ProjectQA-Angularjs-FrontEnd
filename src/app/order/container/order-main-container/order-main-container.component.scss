@@ -1,0 +1,15 @@
+.order-id{
+    display: flex;
+}
+
+.order-container{
+    display: flex;
+    flex-direction: row;
+    .search-container{
+        width: 15%;
+        display: flex;
+    }
+    .result-container{
+        width: 85%;
+    }
+}

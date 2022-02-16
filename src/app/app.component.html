@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <app-nav-bar [isAuthenticated]="isAuthenticated"
+    (login)="login()"
+    (logout)="logout()">
+    </app-nav-bar>
+
+    <div class="general-container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

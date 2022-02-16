@@ -1,0 +1,11 @@
+<div>
+    <app-product-popup [products]="products$ | async"></app-product-popup>
+</div>
+<div>
+    <mat-paginator 
+    [length]="length$ | async" 
+    [pageSize]="pageSize" 
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="changePage($event)">
+  </mat-paginator>
+</div>

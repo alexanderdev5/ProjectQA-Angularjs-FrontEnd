@@ -1,0 +1,88 @@
+<form [formGroup]="orderForm">
+    <div class="new-customer-container">
+        <div class="container-title">
+            ORDEN DE VENTA
+        </div>
+        <div>
+            <div class="customer-first-row">
+                <div class="customer">
+                    <mat-form-field class="customer-field">
+                        <input matInput placeholder="Cliente" formControlName="name">
+                        <mat-error *ngIf="orderForm.get('name').hasError('required')">
+                            Debe ingresar el nombre.
+                        </mat-error>
+                    </mat-form-field>
+                    <button mat-icon-button (click)="openCustomerPopup()">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div>
+                <div class="company">
+                    <mat-form-field class="company-field">
+                        <input matInput placeholder="Company" formControlName="company">
+                        <mat-error *ngIf="orderForm.get('company').hasError('required')">
+                            Debe ingresar la compañia.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="fecha">
+                    <mat-form-field class="fecha-field">
+                        <input matInput [matDatepicker]="datepicker" placeholder="Fecha" formControlName="fecha">
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="customer-second-row">
+                <div class="address">
+                    <mat-form-field class="address-field">
+                        <input matInput placeholder="Address" formControlName="address">
+                        <mat-error *ngIf="orderForm.get('address').hasError('required')">
+                            Debe ingresar la direccion.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="phone">
+                    <mat-form-field class="phone-field">
+                        <input matInput placeholder="Telefono" formControlName="phone">
+                        <mat-error *ngIf="orderForm.get('phone').hasError('required')">
+                            Debe ingresar el phone.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="city">
+                    <mat-form-field class="city-field">
+                        <input matInput placeholder="Ciudad" formControlName="city">
+                        <mat-error *ngIf="orderForm.get('city').hasError('required')">
+                            Debe ingresar la ciudad.</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button (click)="openProductPopup()" mat-mini-fab color="primary" matTooltip="Agregar Producto">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div>
+            <app-order-detail-table [items]="orderProductList" (updateQuantity)="UpdateQuantity($event)"
+                (deleteProductOrder)="onDeleteProductOrder($event)">
+
+            </app-order-detail-table>
+        </div>
+
+        <div class="order-footer" *ngIf="orderProductList.length > 0">
+            <mat-list>
+                <mat-list-item> Total Valor Venta: {{preOrderFooter.TotalValorVenta | currency:"USD"}} </mat-list-item>
+                <mat-list-item> IGV: {{preOrderFooter.ImpuestoGeneralVentas | currency:"USD"}}</mat-list-item>
+                <mat-list-item> Importe Total: {{preOrderFooter.ImporteTotal | currency:"USD"}} </mat-list-item>
+            </mat-list>
+        </div>
+        <div class="button-container" *ngIf="orderProductList.length > 0">
+            <button mat-flat-button color="warn" (click)="onCancel()">Cancelar</button>
+            <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+        </div>
+
+    </div>
+</form>
